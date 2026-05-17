@@ -1,0 +1,64 @@
+﻿@model TodoApp.Models.TodoItem
+
+@{
+    ViewData["Title"] = "Modificare Task";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow border-0 rounded-3">
+
+                <div class="card-header bg-custom-purple text-white text-center py-3">
+                    <h4 class="mb-0 fw-semibold">✏️ Modificare Task</h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Title" class="form-control" id="floatingTitle" placeholder="Titlu task..." />
+                            <label asp-for="Title">Denumire Task</label>
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-check form-switch mb-4">
+                            <input class="form-check-input" type="checkbox" asp-for="IsCompleted" id="statusSwitch">
+                            <label class="form-check-label ms-2 text-secondary" for="statusSwitch">Marcheaza ca finalizat</label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-custom-purple btn-lg shadow-sm text-white fw-semibold">
+                                Salveaza Modificarile
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-sm mt-2 border-0">
+                                ← Inapoi la lista
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-custom-purple, .btn-custom-purple {
+        background-color: #512da8 !important;
+        border-color: #512da8 !important;
+    }
+
+        .btn-custom-purple:hover {
+            background-color: #43248e !important;
+            border-color: #43248e !important;
+        }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

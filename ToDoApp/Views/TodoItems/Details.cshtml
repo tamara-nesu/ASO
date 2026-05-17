@@ -1,0 +1,51 @@
+﻿@model TodoApp.Models.TodoItem
+
+@{
+    ViewData["Title"] = "Detalii Task";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow border-0 rounded-3">
+
+                <div class="card-header bg-info text-white text-center py-3">
+                    <h4 class="mb-0 fw-semibold">Detalii Task</h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="mb-4">
+                        <label class="text-secondary small fw-bold uppercase d-block mb-1">Denumire Task</label>
+                        <p class="fs-4 fw-bold text-dark mb-0">@Model.Title</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="text-secondary small fw-bold uppercase d-block mb-2">Stare Curenta</label>
+                        <div>
+                            @if (Model.IsCompleted)
+                            {
+                                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 fs-6">Finalizat</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-3 py-2 fs-6">In lucru</span>
+                            }
+                        </div>
+                    </div>
+
+                    <hr class="text-muted my-4" />
+
+                    <div class="d-grid gap-2">
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-lg shadow-sm">
+                            Modifica Task
+                        </a>
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            Inapoi la lista
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

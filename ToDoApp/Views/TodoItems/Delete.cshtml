@@ -1,0 +1,49 @@
+﻿@model TodoApp.Models.TodoItem
+
+@{
+    ViewData["Title"] = "Stergere Task";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow border-0 rounded-3">
+
+                <div class="card-header bg-danger text-white text-center py-3">
+                    <h4 class="mb-0 fw-semibold">Confirmare Stergere</h4>
+                </div>
+
+                <div class="card-body p-4 text-center">
+                    <p class="fs-5 text-muted mb-4">Sunteti sigur ca doriti sa stergeti acest task?</p>
+
+                    <div class="bg-light p-3 rounded-3 mb-4 text-start">
+                        <div class="mb-2">
+                            <span class="text-secondary small d-block">Titlu Task:</span>
+                            <span class="fs-5 fw-bold text-dark">@Model.Title</span>
+                        </div>
+                        <div>
+                            <span class="text-secondary small d-block mb-1">Status:</span>
+                            @if (Model.IsCompleted)
+                            {
+                                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3">Finalizat</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-3">In lucru</span>
+                            }
+                        </div>
+                    </div>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg shadow-sm">Sterge Task-ul</button>
+                            <a asp-action="Index" class="btn btn-light border border-2 mt-2">Anuleaza</a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

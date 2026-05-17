@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TodoApp.Models.TodoItem>
+
+@{
+    ViewData["Title"] = "Lista Task-uri";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-6 fw-bold mb-0 text-purple-title">To-Do List</h1>
+        <a asp-action="Create" class="btn btn-custom-purple btn-lg shadow-sm fw-semibold text-white">
+            + Adauga Task
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-0">
+            <div class="list-group list-group-flush rounded-3">
+
+                @foreach (var item in Model)
+                {
+                    <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <div class="me-3">
+                            <h5 class="mb-1 @(item.IsCompleted ? "text-muted fw-normal" : "fw-semibold text-dark")">
+                                @item.Title
+                            </h5>
+
+                            @if (item.IsCompleted)
+                            {
+                                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1">
+                                    Finalizat
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill px-3 py-1 text-dark">
+                                    In lucru
+                                </span>
+                            }
+                        </div>
+
+                        <div class="btn-group" role="group">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm px-3">
+                                Modifica
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm px-3">
+                                Detalii
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm px-3">
+                                Sterge
+                            </a>
+                        </div>
+                    </div>
+                }
+
+                @if (!Model.Any())
+                {
+                    <div class="text-center py-5">
+                        <p class="fs-5 text-muted mb-0">Nu exista task-uri salvate in baza de date.</p>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-purple-title {
+        color: #e0b0ff !important;
+    }
+
+    .btn-custom-purple {
+        background-color: #512da8 !important;
+        border-color: #512da8 !important;
+    }
+
+        .btn-custom-purple:hover {
+            background-color: #43248e !important;
+            border-color: #43248e !important;
+        }
+</style>
